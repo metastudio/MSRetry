@@ -6,7 +6,7 @@ When you call `retry:(MSRetryActionBlock)actionBlock withMessage:(NSString *)mes
 function it shows alert view with your message and buttons "Cancel" and "Retry".
 If user taps "Cancel" nothing is going, but if user taps "Retry" then `actionBlock`
 will be runned. If you call `retry:(MSRetryActionBlock)actionBlock withMessage:(NSString *)message`
-when alert vies is shown, then action will be putted in queue and when user
+when alert view is shown, then action will be putted in queue and when user
 taps "Retry" all actions in queue will be runned.
 
 ## More complex example of using
