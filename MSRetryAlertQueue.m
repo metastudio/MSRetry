@@ -32,16 +32,7 @@ static MSRetryAlertQueue *sharedQueue = nil;
 
 + (void)retry:(MSRetryActionBlock)actionBlock withMessage:(NSString *)message
 {
-    [self retry:actionBlock withMessage:message andCancelType:MSRetryAlertQueueCancelTypeCancel];
-}
-
-+ (void)retry:(MSRetryActionBlock)actionBlock withMessage:(NSString *)message andCancelType:(MSRetryAlertQueueCancelType)cancelType
-{
-    if (cancelType == MSRetryAlertQueueCancelTypeLogout) {
-        [[self sharedRetryAlertQueue] retryOrLogout:actionBlock withMessage:message];
-    } else {
-        [[self sharedRetryAlertQueue] retryOrCancel:actionBlock withMessage:message];
-    }
+    [[self sharedRetryAlertQueue] retryOrCancel:actionBlock withMessage:message];
 }
 
 #pragma mark - Object lifecycle
@@ -101,15 +92,6 @@ static MSRetryAlertQueue *sharedQueue = nil;
     [self retry:actionBlock withMessage:message andCancelButton:[RIButtonItem itemWithLabel:@"Cancel" andAction:^{
         [self.queue removeAllObjects];
         self.alertShown = NO;
-    }]];
-}
-
-- (void)retryOrLogout:(MSRetryActionBlock)actionBlock withMessage:(NSString *)message
-{
-    [self retry:actionBlock withMessage:message andCancelButton:[RIButtonItem itemWithLabel:@"Log out" andAction:^{
-        [self.queue removeAllObjects];
-        self.alertShown = NO;
-        [[NSNotificationCenter defaultCenter] postNotificationName:@"authentication_error" object:self];
     }]];
 }
 

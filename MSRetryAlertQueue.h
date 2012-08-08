@@ -10,16 +10,9 @@
 
 #import "MSRetryAction.h"
 
-typedef enum {
-    MSRetryAlertQueueCancelTypeCancel = 1,
-    MSRetryAlertQueueCancelTypeLogout
-} MSRetryAlertQueueCancelType;
-
 @interface MSRetryAlertQueue : NSObject
 + (MSRetryAlertQueue *)sharedRetryAlertQueue;
 + (void)retry:(MSRetryActionBlock)actionBlock withMessage:(NSString *)message;
-+ (void)retry:(MSRetryActionBlock)actionBlock withMessage:(NSString *)message andCancelType:(MSRetryAlertQueueCancelType)cancelType;
 
 - (void)retryOrCancel:(MSRetryActionBlock)actionBlock withMessage:(NSString *)message;
-- (void)retryOrLogout:(MSRetryActionBlock)actionBlock withMessage:(NSString *)message;
 @end
