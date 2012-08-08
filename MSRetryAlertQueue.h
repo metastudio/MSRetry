@@ -16,7 +16,7 @@ typedef enum {
 } MSRetryAlertQueueCancelType;
 
 @interface MSRetryAlertQueue : NSObject
-+ (MSRetryAlertQueue *)sharedRequestRetry;
++ (MSRetryAlertQueue *)sharedRetryAlertQueue;
 + (void)retry:(MSRetryActionBlock)actionBlock withMessage:(NSString *)message;
 + (void)retry:(MSRetryActionBlock)actionBlock withMessage:(NSString *)message andCancelType:(MSRetryAlertQueueCancelType)cancelType;
 

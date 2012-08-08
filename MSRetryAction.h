@@ -12,6 +12,6 @@ typedef void (^MSRetryActionBlock)();
 
 @interface MSRetryAction : NSObject
 @property (nonatomic, copy) MSRetryActionBlock actionBlock;
-+ (RetryAction *)retryAction:(MSRetryActionBlock)actionBlock;
++ (MSRetryAction *)retryAction:(MSRetryActionBlock)actionBlock;
 - (id)initWithRetryActionBlock:(MSRetryActionBlock)actionBlock;
 @end

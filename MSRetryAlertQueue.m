@@ -6,7 +6,7 @@
 //  Copyright (c) 2012 Metastudio. All rights reserved.
 //
 
-#import "RetryAlertQueue.h"
+#import "MSRetryAlertQueue.h"
 
 #import "UIAlertView+Blocks.h"
 
@@ -15,19 +15,19 @@
 @property (nonatomic, assign, getter=isAllertShown) BOOL alertShown;
 @end
 
-@implementation RetryAlertQueue
+@implementation MSRetryAlertQueue
 
 @synthesize queue = _queue;
 @synthesize alertShown = _alertShown;
 
 static MSRetryAlertQueue *sharedQueue = nil;
 
-+ (MSRetryAlertQueue *)sharedRequestRetry
++ (MSRetryAlertQueue *)sharedRetryAlertQueue
 {
-    if (sharedRequestRetry == nil) {
-        sharedRequestRetry = [[MSRetryAlertQueue allocWithZone:NULL] init];
+    if (sharedQueue == nil) {
+        sharedQueue = [[MSRetryAlertQueue allocWithZone:NULL] init];
     }
-    return sharedRequestRetry;
+    return sharedQueue;
 }
 
 + (void)retry:(MSRetryActionBlock)actionBlock withMessage:(NSString *)message
@@ -38,9 +38,9 @@ static MSRetryAlertQueue *sharedQueue = nil;
 + (void)retry:(MSRetryActionBlock)actionBlock withMessage:(NSString *)message andCancelType:(MSRetryAlertQueueCancelType)cancelType
 {
     if (cancelType == MSRetryAlertQueueCancelTypeLogout) {
-        [[self sharedRequestRetry] retryOrLogout:actionBlock withMessage:message];
+        [[self sharedRetryAlertQueue] retryOrLogout:actionBlock withMessage:message];
     } else {
-        [[self sharedRequestRetry] retryOrCancel:actionBlock withMessage:message];
+        [[self sharedRetryAlertQueue] retryOrCancel:actionBlock withMessage:message];
     }
 }
 

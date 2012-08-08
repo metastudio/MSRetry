@@ -10,7 +10,7 @@
 
 @implementation MSRetryAction
 
-+ (RetryAction *)retryAction:(MSRetryActionBlock)actionBlock
++ (MSRetryAction *)retryAction:(MSRetryActionBlock)actionBlock
 {
     return [[[self alloc] initWithRetryActionBlock:actionBlock] autorelease];
 }
