@@ -25,7 +25,7 @@ Clone as submodule to your project:
 git submodule add https://github.com/metastudio/MSRetry.git lib/MSRetry
 ```
 
-Add `UIAlertView-Blocks` library as submodule:
+Add [UIAlertView-Blocks](https://github.com/jivadevoe/UIAlertView-Blocks) library as submodule:
 
 ```sh
 git submodule add https://github.com/jivadevoe/UIAlertView-Blocks.git lib/UIAlertView-Blocks
