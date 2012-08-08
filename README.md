@@ -25,10 +25,10 @@ Clone as submodule to your project:
 git submodule add https://github.com/metastudio/MSRetry.git lib/MSRetry
 ```
 
-Add [UIAlertView-Blocks](https://github.com/jivadevoe/UIAlertView-Blocks) library as submodule:
+Add [UIAlertView-Blocks](https://github.com/metastudio/UIAlertView-Blocks) library as submodule:
 
 ```sh
-git submodule add https://github.com/jivadevoe/UIAlertView-Blocks.git lib/UIAlertView-Blocks
+git submodule add https://github.com/metastudio/UIAlertView-Blocks.git lib/UIAlertView-Blocks
 ```
 
 Add `.h` and `.m` files from both libraries to your Xcode project.
