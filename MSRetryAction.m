@@ -12,7 +12,7 @@
 
 + (MSRetryAction *)retryAction:(MSRetryActionBlock)actionBlock
 {
-    return [[[self alloc] initWithRetryActionBlock:actionBlock] autorelease];
+    return [[self alloc] initWithRetryActionBlock:actionBlock];
 }
 
 @synthesize actionBlock = _actionBlock;
@@ -26,10 +26,5 @@
     return self;
 }
 
-- (void)dealloc
-{
-    self.actionBlock = nil;
-    [super dealloc];
-}
 
 @end

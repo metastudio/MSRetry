@@ -11,7 +11,7 @@
 #import "UIAlertView+Blocks.h"
 
 @interface MSRetryAlertQueue()
-@property (nonatomic, retain) NSMutableArray *queue;
+@property (nonatomic, strong) NSMutableArray *queue;
 @property (nonatomic, assign, getter=isAllertShown) BOOL alertShown;
 @end
 
@@ -39,9 +39,7 @@ static MSRetryAlertQueue *sharedQueue = nil;
 
 - (void)dealloc
 {
-    self.queue = nil;
     self.alertShown = NO;
-    [super dealloc];
 }
 
 #pragma mark - Properties
@@ -82,7 +80,6 @@ static MSRetryAlertQueue *sharedQueue = nil;
                                                    cancelButtonItem:cancelButton
                                                    otherButtonItems:retryButton, nil];
         [alertView show];
-        [alertView release];
     }
 }
 
