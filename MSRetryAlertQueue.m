@@ -8,7 +8,7 @@
 
 #import "MSRetryAlertQueue.h"
 
-#import "UIAlertView+Blocks.h"
+#import "UIAlertView+BlocksKit.h"
 
 @interface MSRetryAlertQueue()
 @property (nonatomic, strong) NSMutableArray *queue;
@@ -65,20 +65,20 @@ static MSRetryAlertQueue *sharedQueue = nil;
 #pragma mark - Public
 
 - (void)retry:(MSRetryActionBlock)actionBlock
-  withMessage:(NSString *)message andCancelButton:(RIButtonItem *)cancelButton
+  withMessage:(NSString *)message
+  cancelTitle:(NSString *)cancelTitle
+cancelHandler:(void(^)(void))cancelHandler
 {
     [self.queue addObject:[MSRetryAction retryAction:actionBlock]];
     
     if (!self.isAllertShown) {
         self.alertShown = YES;
-        RIButtonItem *retryButton = [RIButtonItem itemWithLabel:@"Retry" andAction:^{
+        UIAlertView *alertView = [UIAlertView alertViewWithTitle:nil message:message];
+        [alertView addButtonWithTitle:@"Retry" handler:^{
             [self runQueue];
             self.alertShown = NO;
         }];
-        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:nil
-                                                            message:message
-                                                   cancelButtonItem:cancelButton
-                                                   otherButtonItems:retryButton, nil];
+        [alertView setCancelButtonWithTitle:cancelTitle handler:cancelHandler];
         [alertView show];
     }
 }
@@ -86,10 +86,10 @@ static MSRetryAlertQueue *sharedQueue = nil;
 - (void)retryOrCancel:(MSRetryActionBlock)actionBlock
           withMessage:(NSString *)message
 {
-    [self retry:actionBlock withMessage:message andCancelButton:[RIButtonItem itemWithLabel:@"Cancel" andAction:^{
+    [self retry:actionBlock withMessage:message cancelTitle:@"Cancel" cancelHandler:^{
         [self.queue removeAllObjects];
         self.alertShown = NO;
-    }]];
+    }];
 }
 
 @end
