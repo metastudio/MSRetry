@@ -73,12 +73,12 @@ cancelHandler:(void(^)(void))cancelHandler
     
     if (!self.isAllertShown) {
         self.alertShown = YES;
-        UIAlertView *alertView = [UIAlertView alertViewWithTitle:nil message:message];
-        [alertView addButtonWithTitle:@"Retry" handler:^{
+        UIAlertView *alertView = [UIAlertView bk_alertViewWithTitle:nil message:message];
+        [alertView bk_addButtonWithTitle:@"Retry" handler:^{
             [self runQueue];
             self.alertShown = NO;
         }];
-        [alertView setCancelButtonWithTitle:cancelTitle handler:cancelHandler];
+        [alertView bk_setCancelButtonWithTitle:cancelTitle handler:cancelHandler];
         [alertView show];
     }
 }
